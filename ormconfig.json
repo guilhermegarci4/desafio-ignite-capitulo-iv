@@ -1,0 +1,19 @@
+{
+  "username": "docker",
+  "password": "ignite",
+
+  "name": "default",
+  "type": "postgres",
+  "host": "172.18.0.2",
+  "port": 5432,
+  "database": "fin_api",
+  "entities": [
+    "./src/modules/**/entities/*.ts"
+  ],
+  "migrations": [
+    "./src/database/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
