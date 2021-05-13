@@ -4,13 +4,15 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 import { User } from '../../users/entities/User';
+import { Transfer } from './Transfer';
 
-enum OperationType {
+export enum OperationType {
   DEPOSIT = 'deposit',
   WITHDRAW = 'withdraw',
 }
@@ -35,6 +37,13 @@ export class Statement {
 
   @Column({ type: 'enum', enum: OperationType })
   type: OperationType;
+
+  @Column()
+  transfer_id?: string
+
+  @OneToOne(() => Transfer)
+  @JoinColumn({ name: 'transfer_id' })
+  transfer: Transfer
 
   @CreateDateColumn()
   created_at: Date;
